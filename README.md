@@ -1,7 +1,5 @@
-# Paynet-REST-Security
+#Paynet Workshop
 
-Paynet Workshop
+#REST API Security
 
-REST API Security
-
-28 Sept - 21 Oct 2021
+#28 Sept - 21 Oct 2021
