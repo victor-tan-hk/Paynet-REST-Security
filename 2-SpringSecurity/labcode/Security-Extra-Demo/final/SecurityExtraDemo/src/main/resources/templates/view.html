@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+	<h1>List of heroes</h1>
+	
+	<table>
+	    <tr>
+	        <th>No</th>
+	        <th>Hero Name</th>
+	        <th>Hero Powers</th>
+	    </tr>
+	    <tr th:each="hero, heroStat : ${heroes}">
+	        <td th:text="${heroStat.count}">1</td>
+	        <td th:text="${hero.name}">John</td>
+	        <td>
+				<ul>
+					<li th:each="power : ${hero.powers}"><span th:text="${power}"></span></li>					
+				</ul>	        
+	        </td>
+	    </tr>
+	</table>	
+	<br/>
+	<br/>
+	<a th:href="@{/}">Back to main menu</a>
+
+</body>
+</html>

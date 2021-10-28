@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<h2>Add new powers for two existing heroes</h2>
+	
+		<div sec:authorize="isAuthenticated()">
+		    <p>Welcome back, <span sec:authentication="name"></span> ! </p>
+		    <p>You have the role of <span sec:authentication="principal.authorities"></span></p>
+        </div>		
+        
+		<form th:action="@{/add}" method="post">
+	
+			<fieldset>
+				<legend>Hero 1</legend>
+				
+				<label for="heroname1">Select a hero:</label>
+				<select name="heroname1" id="cars">
+				  <option value="spiderman">Spiderman</option>
+				  <option value="ironman">Ironman</option>
+				  <option value="superman">Superman</option>
+				  <option value="wonderwoman">Wonder Woman</option>
+				</select>
+				
+				<label for="power1">New Power</label>
+				<input type="text" id="power1" name="power1" /> 
+			</fieldset>
+	
+			<fieldset>
+				<legend>Hero 2</legend>
+				
+				<label for="heroname2">Hero name</label> 
+				<select name="heroname2" id="cars">
+				  <option value="spiderman">Spiderman</option>
+				  <option value="ironman">Ironman</option>
+				  <option value="superman">Superman</option>
+				  <option value="wonderwoman">Wonder Woman</option>
+				</select>
+				
+				<label for="power2">New Power</label>
+				<input type="text" id="power2" name="power2" /> 
+			</fieldset>
+	
+			<br />
+			<button type="submit">Submit</button>	
+		</form>
+	
+	<a th:href="@{/}">Back to main menu</a>
+	
+</body>
+</html>

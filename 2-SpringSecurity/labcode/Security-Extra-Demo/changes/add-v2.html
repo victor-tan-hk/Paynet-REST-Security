@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<h1>Add a record</h1>
+	
+    <div sec:authorize="hasRole('USER')">
+    	<p>Add any hero relevant to the DC Universe</p>
+    </div>
+    
+    <div sec:authorize="hasRole('ADMIN')">
+    	<p>Here's the top secret for your eyes only.</p>
+    	<p>Ironman didn't really die, he just went to an alternate universe.</p>
+    </div>
+	
+	<a th:href="@{/}">Back to main menu</a>
+	
+</body>
+</html>
