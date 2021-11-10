@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+
+	<h3>Employee Records Management System</h3>
+	
+	<p>
+		<th:block th:if="${realUserName}" th:text="'Hello, ' + ${realUserName} + '!'"></th:block>
+	</p>
+	<p>
+		<th:block th:if="${userEmail}" th:text="'You are contactable at : ' + ${userEmail}"></th:block>
+	</p>
+	<p>
+		<th:block th:if="${userCompany}" th:text="'You work at : ' + ${userCompany}"></th:block>
+	</p>
+	
+	<p>
+		<th:block th:if="${userLocation}" th:text="'You are based in : ' + ${userLocation}"></th:block>
+	</p>
+
+	<ul>
+		<li><a th:href="@{/add}">Add a record</a></li>
+		<li><a th:href="@{/view}">View a record</a></li>
+		<li><a th:href="@{/delete}">Delete a record</a></li>
+		<li><a th:href="@{/update}">Update a record</a></li>
+	</ul>
+
+	<br /> 
+	<br /> 
+	
+	<form th:action="@{/performLogout}" method="post">
+		<button type="submit">Log out</button>
+	</form>
+</body>
+</html>

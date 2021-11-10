@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+
+	<h3>Employee Records Management System</h3>
+
+	<ul>
+		<li><a th:href="@{/add}">Add a record</a></li>
+		<li><a th:href="@{/view}">View a record</a></li>
+		<li><a th:href="@{/delete}">Delete a record</a></li>
+		<li><a th:href="@{/update}">Update a record</a></li>
+	</ul>
+
+	<br /> 
+	<br /> 
+	
+	<form th:action="@{/performLogout}" method="post">
+		<button type="submit">Log out</button>
+	</form>
+</body>
+</html>

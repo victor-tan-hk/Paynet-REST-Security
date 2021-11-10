@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+	<h1>View a record</h1>
+	<p th:text="'Hello, ' + ${realUserName} + '!'"/>
+	<p th:text="'You are contactable at : ' + ${userEmail}"/>
+	<p>
+		<th:block th:if="${userCompany}" th:text="'You work at : ' + ${userCompany}"></th:block>
+	</p>
+	
+	<p>
+		<th:block th:if="${userLocation}" th:text="'You are based in : ' + ${userLocation}"></th:block>
+	</p>
+
+	<a th:href="@{/}">Back to main menu</a>
+
+</body>
+</html>
