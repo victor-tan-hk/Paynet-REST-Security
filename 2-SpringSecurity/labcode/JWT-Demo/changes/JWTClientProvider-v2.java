@@ -34,6 +34,7 @@ import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Service;
 
+
 @Slf4j
 @Service
 public class JWTClientProvider {
@@ -52,7 +53,11 @@ public class JWTClientProvider {
 	private SecretKey secretKey = null;
 	private PublicKey publicKey = null;
 	
+	private MySigningKeyResolver signingKeyResolver;
+	
 	public JWTClientProvider() {
+		
+		signingKeyResolver = new MySigningKeyResolver();
 		
 		try {
 
@@ -66,6 +71,9 @@ public class JWTClientProvider {
 
 			secretKey = (SecretKey) keyStore.getKey(SECRETKEY_ALIAS, KEYSTORE_PASSWD.toCharArray());
 			
+			// Adding this secretKey for to key resolver so that is used for signature verification for HS256
+			signingKeyResolver.addKeyMapping(SignatureAlgorithm.HS256, secretKey);
+			
 			log.info("Loading the keystore instance with the contents of the keystore file : " + CLIENT_TRUSTSTORE_FILE
 					+ " using password : " + KEYSTORE_PASSWD);
 
@@ -75,6 +83,11 @@ public class JWTClientProvider {
 			log.info("Extracting the public key from the certificate with the alias of : " + CERT_ALIAS);
 			Certificate certificate = keyStore.getCertificate(CERT_ALIAS);
 			publicKey = certificate.getPublicKey();
+			
+			
+			// Adding this public key to key resolver so that it is used for signature verification for RS256
+			signingKeyResolver.addKeyMapping(SignatureAlgorithm.RS256, publicKey);
+			
 
 		} catch (KeyStoreException | NoSuchAlgorithmException | CertificateException | IOException e) {
 			// TODO Auto-generated catch block
@@ -113,11 +126,14 @@ public class JWTClientProvider {
 
 	}
 
-	public void decodeJWT(String jwtString, Key keyToUse) {
+	public void decodeJWT(String jwtString) {
 
 		try {
 
-			JwtParser parser = Jwts.parserBuilder().setSigningKey(keyToUse).build();
+			JwtParser parser = Jwts.parserBuilder()
+					.setSigningKeyResolver(signingKeyResolver)
+					.build();
+
 			Claims claims = parser.parseClaimsJws(jwtString).getBody();
 
 			log.info("Subject : " + claims.getSubject());
@@ -134,7 +150,7 @@ public class JWTClientProvider {
 			log.info(e.getMessage());
 
 		}
-	}	
+	}
 	
 
 }

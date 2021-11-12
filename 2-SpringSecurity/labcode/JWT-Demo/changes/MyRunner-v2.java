@@ -21,25 +21,26 @@ public class MyRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
     	
-    	
     	String jwt = null;
     	
-    	log.info("Retrieving a normal developer");
+    	log.info("Retrieving a developer in JSON directly from body");
     	Developer d = myRestService.getDeveloper();
     	log.info(d.toString());
     	
     	waitKeyPress();
     	
-    	log.info("Retrieving a developer as JWT signed with secret key");
+    	log.info("Retrieving a developer from a JWT that was signed with secret key");
     	jwt = myRestService.getDeveloperAsJWTwithSecret();
-    	jwtClient.decodeJWT(jwt, jwtClient.getSecretKey());
+    	jwtClient.decodeJWT(jwt);
+    	
     	
     	waitKeyPress();
     	
-    	log.info("Retrieving a developer as JWT signed with private key");
+    	log.info("Retrieving a developer from a JWT that was signed with public key");
     	jwt = myRestService.getDeveloperAsJWTwithPrivate();
-    	jwtClient.decodeJWT(jwt, jwtClient.getPublicKey());
+    	jwtClient.decodeJWT(jwt);
     	
+
     	waitKeyPress();
     	
     	log.info("Sending a developer as JWT signed with private key in the query parameter");
