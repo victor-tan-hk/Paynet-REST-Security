@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<style>
+	
+		table {
+		  font-family: Arial, Helvetica, sans-serif;
+		  border-collapse: collapse;
+		  width: 100%;
+		}
+		
+		table td, th {
+		  border: 1px solid #ddd;
+		  padding: 8px;
+		}
+		
+		table tr:nth-child(even){background-color: #f2f2f2;}
+		
+		table tr:hover {background-color: #ddd;}
+		
+		table th {
+		  padding-top: 12px;
+		  padding-bottom: 12px;
+		  text-align: left;
+		  background-color: #04AA6D;
+		  color: white;
+		}
+	</style>
+
+    <meta charset="utf-8">
+    <title>Country listing page</title>
+
+</head>
+
+
+<body>
+
+<h1 th:if="${countries}">List of Countries</h1>
+<h1 th:if="${total}">Count total</h1>
+
+<h4><a href="/">Back to main menu</a></h4>
+
+<table th:if="${countries}">
+    <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Capital</th>
+        <th>Region</th>
+        <th>Subregion</th>
+        <th>Population</th>
+        <th>Currencies</th>
+        <th>Languages</th>
+    </tr>
+    <tr th:each="country, countryStat : ${countries}">
+        <td th:text="${countryStat.count}"/>
+        <td th:text="${country.name}"/>
+        <td th:text="${country.capital}"/>
+        <td th:text="${country.region}"/>
+        <td th:text="${country.subregion}"/>
+        <td th:text="${country.population}"/>
+        <td>
+        	 <span th:each="currency : ${country.currencies}" th:text="${currency} + ','"/>
+        </td>
+        <td>
+        	 <span th:each="language : ${country.languages}" th:text="${language} + ','"/>
+        </td>        
+    </tr>
+</table>
+
+
+<table th:if="${total}">
+    <tr>
+        <th>Column name</th>
+        <th>Column value</th>
+        <th>Total</th>
+    </tr>
+    <tr>
+        <td th:text="${total.colname}"/>
+        <td th:text="${total.colvalue}"/>
+        <td th:text="${total.total}"/>
+    </tr>
+</table>
+
+
+
+
+<h4><a href="/">Back to main menu</a></h4>
+
+</body>
+</html>

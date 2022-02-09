@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{css/forms.css}" rel="stylesheet" />
+</head>
+<body>
+
+	<h2>Update JWT expiration time</h2>
+
+<p>Specify the duration from the date of issuance to expiration</p>
+	<form action="#" th:action="@{/changedate}" method="post"
+		th:object="${dateForm}">
+
+        <label>Days : <input type="number" th:field="*{expDays}" />
+        </label>
+        <div th:if="${#fields.hasErrors('expDays')}" th:class="${#fields.hasErrors('expDays')}? error" th:errors="*{expDays}">error message</div>
+
+        <label>Hours : <input type="number" th:field="*{expHours}" />
+        </label>
+        <div th:if="${#fields.hasErrors('expHours')}" th:class="${#fields.hasErrors('expHours')}? error" th:errors="*{expHours}">error message</div>
+
+
+        <label>Minutes : <input type="number" th:field="*{expMinutes}" />
+        </label>
+        <div th:if="${#fields.hasErrors('expMinutes')}" th:class="${#fields.hasErrors('expMinutes')}? error" th:errors="*{expMinutes}">error message</div>
+        
+        <div th:if="${#fields.hasErrors('global')}">
+		    <p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" />
+		</div> 	
+
+		<br/>
+		<br/>
+
+		<button type="submit">Update</button>
+	</form>
+	
+	<br>
+
+	<a th:href="@{/mainmenu}">Back to main menu</a>
+
+
+</body>
+</html>

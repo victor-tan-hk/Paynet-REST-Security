@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+	<h2>JWT issued</h2>
+	
+	<textarea rows="5" cols="50" th:text="${jwtString}" readonly>
+		jwt content inside here
+	</textarea>
+	
+	<br>
+	<br>
+	<a th:href="@{https://jwt.io/}" target="_blank">Decode JWT content here</a>
+	<br>
+	<br>
+	<a th:href="@{/mainmenu}">Back to main menu</a>
+
+</body>
+</html>

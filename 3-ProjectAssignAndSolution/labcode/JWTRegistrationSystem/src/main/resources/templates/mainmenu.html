@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+	<h1>MAIN MENU</h1>
+	
+	<p>You are logged in with email : <strong th:text="${email}"></strong></p>
+	<div th:if="${firstTimeLogin}">
+		<p>It seems that this is the first time you are logging in via that email.<br>
+		   Do consider providing additional details about yourself</p>
+	 </div>
+	<div>
+		<a th:href="@{/update}">Update own account details</a>
+	</div>
+	<br>
+	<div>
+		<a th:href="@{/getjwt}">Obtain a new JWT</a>
+	</div>
+	<br>
+	
+	<div sec:authorize="hasRole('ADMIN')">
+		<a th:href="@{/maintain}">Maintain existing user accounts</a></li>
+		<br>
+		<br>
+		<a th:href="@{/changedate}">Change JWT expiration date</a></li>
+		
+	</div>
+	
+	<br>
+	<br>
+
+    <form th:action="@{/performLogout}" method="post">
+        <button type="submit">Log out</button>
+    </form>
+
+</body>
+</html>

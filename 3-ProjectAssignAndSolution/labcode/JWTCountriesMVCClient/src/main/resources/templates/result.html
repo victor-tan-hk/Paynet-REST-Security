@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Results page</title>
+</head>
+
+<body>
+	
+	<h1>
+	    <span th:if="${operation == 'addSuccess'}">Country successfully added !</span>
+	    <span th:if="${operation == 'deleteSuccess'}">Country successfully deleted !</span>
+	    <span th:if="${operation == 'modifySuccess'}">Country successfully modified !</span>
+	    <span th:if="${operation == 'serviceError'}">Error returned from REST Service API</span>
+	</h1>
+
+	<p th:text="${serviceError}"/>
+	
+	<h4><a href="/">Back to main menu</a></h4>
+
+</body>
+
+
+
+
+
+</html>

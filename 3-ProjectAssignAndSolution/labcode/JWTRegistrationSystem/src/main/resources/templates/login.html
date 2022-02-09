@@ -1,0 +1,41 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{css/forms.css}" rel="stylesheet" />
+</head>
+<body>
+	<h2>JWT User Registration System</h2>
+
+	<form th:action="@{/performLogin}" method="post">
+		<fieldset>
+			<legend>Login with existing account</legend>
+			<div th:if="${param.error}">Invalid email or password.</div>
+			<div th:if="${param.logout}">You have been logged out.</div>
+			
+			<label for="username">Email :  <input type="text" id="username" name="username" />
+			</label> 
+
+			<label for="password">Password : <input type="password" id="password" name="password" />
+			</label>
+
+			<button type="submit">Log in</button>
+		</fieldset>
+	</form>
+
+	<a th:href="@{/register}">Register a new account</a>
+	<br>
+	<br>
+
+	<fieldset>
+		<legend>Social Login</legend>
+	
+		<h4><a th:href="@{/oauth2/authorization/google}">Login with Google</a>
+		</h4>
+		
+		<h4><a th:href="@{/oauth2/authorization/github}">Login with GitHub</a>
+		</h4>			
+	
+	</fieldset>
+	
+</body>
+</html>

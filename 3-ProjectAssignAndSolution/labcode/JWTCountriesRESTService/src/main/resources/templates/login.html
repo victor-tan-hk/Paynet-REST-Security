@@ -1,0 +1,25 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<body>
+	<h2>Test Registration System</h2>
+
+	<form th:action="@{/performLogin}" method="post">
+		<fieldset>
+			<legend>Login with existing account</legend>
+			<div th:if="${param.error}">Invalid email or password.</div>
+			<div th:if="${param.logout}">You have been logged out.</div>
+			
+			<label for="username">Email :  <input type="text" id="username" name="username" />
+			</label> 
+
+			<label for="password">Password : <input type="password" id="password" name="password" />
+			</label>
+
+			<button type="submit">Log in</button>
+		</fieldset>
+	</form>
+
+
+	
+</body>
+</html>

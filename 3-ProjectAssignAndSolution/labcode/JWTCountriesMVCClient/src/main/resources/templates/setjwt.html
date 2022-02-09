@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<body>
+
+	<h2>Set JWT for all requests to Countries REST service</h2>
+
+
+	<form action="#" th:action="@{/setjwt}" method="post">
+
+		<textarea id="jwt" name="jwt" rows="5" cols="50" th:text="${jwtstring}"></textarea>
+		<br>
+		<br>
+		<button type="submit">Set</button>
+
+	</form>
+	
+	<br>
+	<a th:href="@{/}">Back to main menu</a>
+
+</body>
+</html>
+
+
+<!-- placeholder="Copy and paste JWT here" -->

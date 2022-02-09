@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{css/maintain.css}" rel="stylesheet" />
+</head>
+<body>
+	<h1>Maintain user accounts</h1>
+
+	<table>
+		<tr>
+			<th>No</th>
+			<th>Email</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>REST Role</th>
+		</tr>
+		<tr th:each="user, userStat : ${users}">
+			<td th:text="${userStat.count}">1</td>
+			<td th:text="${user.email}">John</td>
+			<td th:text="${user.firstName}">Doe</td>
+			<td th:text="${user.lastName}">18</td>
+			<td th:text="${user.roleREST}">john.doe@frontbackend.com</td>
+		</tr>
+	</table>
+
+	<hr>
+	
+	<form action="#" th:action="@{/maintain}" method="post" th:object="${maintainForm}">
+		<label>Email of account : </label> 
+		<input type="email" th:field="*{email}"/>
+<!--         Only display global error messages pertaining to email -->
+        <div th:if="${#fields.hasErrors('global')}">
+		    <p th:each="err : ${#fields.errors('global')}" th:text="${err}" th:if="${#strings.contains(err,'email')}" class="error" />
+		</div> 		
+		
+		<br>	
+		<br>	
+		Action to perform on account
+		<br>
+		<input type="radio" id="delete" th:field="*{action}" value="update">
+		<label for="delete">Update REST role for account</label> 
+		<br> 
+		<input type="radio" id="delete" th:field="*{action}" value="delete"> 
+		<label for="delete">Delete account</label> 
+		<br> 
+		<br> 
+		<label>New REST role : </label> 
+		<select th:field="*{newRole}">
+		  <option value="ROLE_BASIC">BASIC</option>
+		  <option value="ROLE_FULL">FULL</option>
+		</select>		
+		<br> 
+		<br> 
+		
+		<input type="submit" value="Perform action" />
+	</form>
+		<br> 
+	<a th:href="@{/mainmenu}">Back to main menu</a>
+
+</body>
+</html>

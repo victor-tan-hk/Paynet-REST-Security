@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<style>
+	.error {
+	  color: red;
+	}
+	</style>
+    <meta charset="utf-8">
+    <title>Retrieve countries page</title>
+</head>
+
+
+
+<body>
+
+	<h1>Retrieving countries</h1>
+	
+	<h4>Select retrieval action :</h4>
+	
+	<form action ="#" th:action="@{/get}" th:object="${countryForm}" method="post">
+	
+		<input type="radio" th:field="*{retrieveTarget}" th:value="name">Retrieve on country name (use * for all countries)<br>
+		<input type="radio" th:field="*{retrieveTarget}" th:value="capital">Retrieve on capital name<br>
+		<input type="radio" th:field="*{retrieveTarget}" th:value="region">Retrieve on region<br>
+		<input type="radio" th:field="*{retrieveTarget}" th:value="subregion">Retrieve on subregion<br>
+		<input type="radio" th:field="*{retrieveTarget}" th:value="language">Retrieve on language<br>
+		<input type="radio" th:field="*{retrieveTarget}" th:value="currency">Retrieve on currency<br>
+		<input type="radio" th:field="*{retrieveTarget}" th:value="langnum">Retrieve on number of languages spoken<br>
+		<input type="radio" th:field="*{retrieveTarget}" th:value="popmore">Retrieve on population being more than a specified number<br>
+		<input type="radio" th:field="*{retrieveTarget}" th:value="popless">Retrieve on population being less than a specified number<br>
+		<input type="radio" th:field="*{retrieveTarget}" th:value="count-region">Count number of countries in a given region<br>
+		<input type="radio" th:field="*{retrieveTarget}" th:value="count-language">Count number of countries that use a specific language<br>
+		<input type="radio" th:field="*{retrieveTarget}" th:value="pop-asc">Sort on population ascending<br>
+		<input type="radio" th:field="*{retrieveTarget}" th:value="pop-desc">Sort on population descending<br>
+	  
+        <p>Value to use : <input type="text" th:field="*{valToUse}" /></p>
+		<p th:if="${getError}" class="error">
+			<span th:text="${getError}"/>
+		</p>
+		
+		<h4>Pagination</h4>
+		
+		<p>Page : <input type="text" th:field="*{page}" /></p>
+		<p>Limit : <input type="text" th:field="*{limit}" /></p>
+		<p th:if="${pageLimitError}" class="error">
+			<span th:text="${pageLimitError}"/>
+		</p>
+		
+		<p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>	  
+	</form>
+	
+</body>
+</html>

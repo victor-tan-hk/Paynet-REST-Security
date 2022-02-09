@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Main Menu Page</title>
+</head>
+<body>
+	<h1>Welcome to the Countries REST API</h1>
+<!-- 	<p th:if="${jwtstring}" th:text="'jwtstring is ' + ${jwtstring}"/> -->
+	
+<!-- 	<p th:if="${jwtstring}"> The Jwt string exists </p> -->
+	<div th:unless="${jwtstring}"> 
+		<p>The JWT token is not set yet. </p>
+		<p>Please do this first in order to access the secure REST API</p>
+	</div>
+
+	<h3><a href="/setjwt">Initialize JWT token</a></h3>
+	
+	<div th:if="${jwtstring}">
+		<h3><a href="/get">Retrieve a list of countries</a></h3>
+		<h3><a href="/add">Add a new country</a></h3>
+		<h3><a href="/update">Update an existing country</a></h3>
+		<h3><a href="/delete">Delete an existing country</a></h3>
+	</div>
+
+	
+</body>
+</html>

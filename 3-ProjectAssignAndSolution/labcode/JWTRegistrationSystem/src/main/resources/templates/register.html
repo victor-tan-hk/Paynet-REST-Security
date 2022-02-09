@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{css/forms.css}" rel="stylesheet" />
+</head>
+<body>
+
+	<h1>Register a new account</h1>
+	
+    <form action="#" th:action="@{/register}" method="post" th:object="${userForm}">
+
+<!-- 		By setting input type to email, we rely on browser to validate correct email format -->
+<!-- 		However it is better for production grade apps to create our custom email validator -->
+        <label>E-mail : <input type="email" th:field="*{email}" />
+        </label>
+<!--         Only display global error messages pertaining to email -->
+        <div th:if="${#fields.hasErrors('global')}">
+		    <p th:each="err : ${#fields.errors('global')}" th:text="${err}" th:if="${#strings.contains(err,'email')}" class="error" />
+		</div> 
+        
+        <label>Password : <input type="password" th:field="*{password}" />
+        </label>
+        <div th:if="${#fields.hasErrors('password')}" th:class="${#fields.hasErrors('password')}? error"  th:errors="*{password}">Password Error</div>
+
+        <label>Retype password : <input type="password" th:field="*{matchingPassword}" /> 
+        </label>
+<!--         Only display global error messages pertaining to passwords -->
+        <div th:if="${#fields.hasErrors('global')}">
+		    <p th:each="err : ${#fields.errors('global')}" th:text="${err}" th:if="${#strings.contains(err,'passwords')}" class="error" />
+		</div>       
+
+    	<hr>
+    	
+        <label>First name : <input type="text" th:field="*{firstName}" />
+        </label>
+        <div th:if="${#fields.hasErrors('firstName')}" th:class="${#fields.hasErrors('firstName')}? error" th:errors="*{firstName}">First Name Error</div>
+
+        <label>Last name : <input type="text" th:field="*{lastName}" />
+        </label>
+        <div th:if="${#fields.hasErrors('lastName')}" th:class="${#fields.hasErrors('lastName')}? error"  th:errors="*{lastName}">Last Name Error</div>
+ 
+
+ 
+        <br/>
+        <button type="submit">Register</button>    
+    </form>	
+	
+	<br/>
+	<a th:href="@{/login}">Back to login page</a>
+
+</body>
+</html>
